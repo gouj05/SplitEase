@@ -1,4 +1,4 @@
-# SmartSplit AI
+# SplitEase
 
 > AI-powered bill extraction, validation, review, editing, and expense splitting application.
 
