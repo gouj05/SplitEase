@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        SplitEase | Smart Bill Splitter
+    </title>
+
+    <meta
+        name="description"
+        content="Upload a bill, let SplitEase read the items, and split the total fairly between everyone at the table."
+    >
+
+    <!-- Bootstrap -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- Bootstrap Icons -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+
+    <!-- Custom CSS -->
+
+    <link
+        rel="stylesheet"
+        href="/static/css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- ========================================================= -->
+<!-- SECTION 1: NAVBAR -->
+<!-- ========================================================= -->
+
+<nav class="navbar navbar-expand-lg app-navbar">
+
+    <div class="container">
+
+        <a
+            class="navbar-brand brand-logo"
+            href="#"
+        >
+
+            <div class="brand-icon">
+
+                <i class="bi bi-receipt-cutoff"></i>
+
+            </div>
+
+            <div>
+
+                <span>
+                    SplitEase
+                </span>
+
+                <small>
+                    Smart Bill Splitter
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <div class="navbar-status">
+
+            <span class="status-dot"></span>
+
+            System Online
+
+        </div>
+
+    </div>
+
+</nav>
+<!-- ========================================================= -->
+<!-- MAIN CONTAINER -->
+<!-- ========================================================= -->
+
+<div class="container py-5">
+
+
+    <!-- ========================================================= -->
+<!-- SECTION 2: HERO -->
+<!-- ========================================================= -->
+
+<section
+    class="hero-section"
+    id="heroSection"
+>
+
+    <div class="container">
+
+        <div class="text-center">
+
+            <div class="hero-badge">
+
+                <i class="bi bi-stars"></i>
+
+                AI Powered Bill Processing
+
+            </div>
+
+
+            <h1 class="hero-title">
+
+                Split Bills
+
+                <span>
+                    Without The Math.
+                </span>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                Upload your bill and let SplitEase
+                automatically extract items, validate totals,
+                and calculate everyone's share.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+    <!-- ========================================================= -->
+<!-- SECTION 3: PROGRESS STEPS -->
+<!-- ========================================================= -->
+
+<section
+    class="progress-section"
+    id="progressSection"
+>
+
+    <div class="container">
+
+        <div class="progress-wrapper">
+
+
+            <!-- STEP 1 -->
+
+            <div
+                class="progress-step active"
+                id="step1"
+            >
+
+                <div class="step-circle">
+
+                    1
+
+                </div>
+
+                <span>
+                    Upload
+                </span>
+
+            </div>
+
+
+            <div class="progress-line"></div>
+
+
+            <!-- STEP 2 -->
+
+            <div
+                class="progress-step"
+                id="step2"
+            >
+
+                <div class="step-circle">
+
+                    2
+
+                </div>
+
+                <span>
+                    Review
+                </span>
+
+            </div>
+
+
+            <div class="progress-line"></div>
+
+
+            <!-- STEP 3 -->
+
+            <div
+                class="progress-step"
+                id="step3"
+            >
+
+                <div class="step-circle">
+
+                    3
+
+                </div>
+
+                <span>
+                    Split
+                </span>
+
+            </div>
+
+
+            <div class="progress-line"></div>
+
+
+            <!-- STEP 4 -->
+
+            <div
+                class="progress-step"
+                id="step4"
+            >
+
+                <div class="step-circle">
+
+                    4
+
+                </div>
+
+                <span>
+                    Result
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+    <!-- ===================================================== -->
+    <!-- UPLOAD CARD -->
+    <!-- ===================================================== -->
+
+    <div
+        class="row justify-content-center"
+    >
+
+        <div
+            class="col-lg-8"
+        >
+
+            <div
+                class="card upload-card shadow-sm"
+            >
+
+
+                <div
+                    class="card-body p-5"
+                >
+
+
+                    <!-- UPLOAD AREA -->
+
+                    <div
+                        id="uploadArea"
+                        class="upload-area"
+                    >
+
+                        <input
+
+                            type="file"
+
+                            id="billFile"
+
+                            accept="image/*"
+
+                            aria-label="Upload bill image"
+
+                            hidden
+
+                        >
+
+
+                        <i
+                            class="bi bi-cloud-arrow-up upload-icon"
+                        ></i>
+
+
+                        <h4>
+
+                            Upload Bill
+
+                        </h4>
+
+
+                        <p
+                            class="text-muted"
+                        >
+
+                            Drag & drop your bill image
+
+                            <br>
+
+                            or click to browse
+
+                        </p>
+
+
+                        <button
+
+                            id="browseBtn"
+
+                            class="btn btn-primary px-4"
+
+                        >
+
+                            Choose Image
+
+                        </button>
+
+
+                        <p
+                            class="small text-muted mt-3"
+                        >
+
+                            Supports JPG, PNG and WEBP
+
+                        </p>
+
+
+                    </div>
+
+
+
+                    <!-- FILE PREVIEW -->
+
+                    <div
+
+                        id="filePreview"
+
+                        class="d-none"
+
+                    >
+
+                        <div
+                            class="preview-container"
+                        >
+
+                            <img
+                                id="previewImage"
+                            >
+
+
+                            <div>
+
+                                <h5
+                                    id="fileName"
+                                >
+                                </h5>
+
+
+                                <p
+                                    class="text-muted"
+                                >
+
+                                    Ready to process
+
+                                </p>
+
+                            </div>
+
+
+                            <button
+
+                                id="removeFile"
+
+                                class="btn btn-outline-danger"
+
+                                aria-label="Remove selected file"
+
+                            >
+
+                                <i
+                                    class="bi bi-trash"
+                                ></i>
+
+                            </button>
+
+
+                        </div>
+
+
+                        <button
+
+                            id="processBtn"
+
+                            class="btn btn-success w-100 mt-4"
+
+                        >
+
+                            <i
+                                class="bi bi-cpu"
+                            ></i>
+
+                            Process Bill
+
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ===================================================== -->
+    <!-- LOADING -->
+    <!-- ===================================================== -->
+
+    <div
+
+        id="loadingSection"
+
+        class="text-center mt-5 d-none"
+
+    >
+
+        <div
+            class="spinner-border text-primary"
+        ></div>
+
+
+        <h5
+            class="mt-3"
+        >
+
+            Processing your bill...
+
+        </h5>
+
+
+        <p
+            class="text-muted"
+        >
+
+            Running OCR and extracting items
+
+        </p>
+
+    </div>
+
+
+
+    <!-- ===================================================== -->
+    <!-- RESULT -->
+    <!-- ===================================================== -->
+
+    <div
+
+        id="resultSection"
+
+        class="mt-5 d-none"
+
+    >
+
+
+        <h3
+            class="fw-bold"
+        >
+
+            Bill Details
+
+        </h3>
+
+
+        <div
+            id="billResult"
+        ></div>
+
+
+    </div>
+
+    <!-- ============================================ -->
+<!-- EXTRACTED BILL SECTION -->
+<!-- ============================================ -->
+
+<section
+    id="billSection"
+    class="bill-section"
+    style="display: none;"
+>
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>
+                Extracted Bill Details
+            </h2>
+
+            <p>
+                Review and edit the extracted values before splitting the bill.
+            </p>
+
+        </div>
+
+        <button
+            id="saveBillBtn"
+            class="save-btn"
+            type="button"
+        >
+
+            💾 Save Changes
+
+        </button>
+
+    </div>
+
+
+    <!-- ======================================== -->
+    <!-- ITEMS TABLE -->
+    <!-- ======================================== -->
+
+    <div class="bill-table-wrapper">
+
+        <table
+            id="billItemsTable"
+        >
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Item Name
+                    </th>
+
+                    <th>
+                        Quantity
+                    </th>
+
+                    <th>
+                        Unit Price
+                    </th>
+
+                    <th>
+                        Total
+                    </th>
+
+                    <th>
+                        Action
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody
+                id="billItemsBody"
+            >
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- ======================================== -->
+    <!-- ADD ITEM -->
+    <!-- ======================================== -->
+
+    <button
+        id="addItemBtn"
+        class="secondary-btn"
+        type="button"
+    >
+
+        + Add Item
+
+    </button>
+
+
+    <!-- ======================================== -->
+    <!-- BILL SUMMARY -->
+    <!-- ======================================== -->
+
+    <div
+        class="bill-summary"
+    >
+
+        <h3>
+            Bill Summary
+        </h3>
+
+
+        <div class="summary-grid">
+
+
+            <div class="summary-field">
+
+                <label>
+                    Subtotal
+                </label>
+
+                <input
+                    type="number"
+                    id="subtotalInput"
+                    step="0.01"
+                >
+
+            </div>
+
+
+            <div class="summary-field">
+
+                <label>
+                    Packing Charges
+                </label>
+
+                <input
+                    type="number"
+                    id="packingChargesInput"
+                    step="0.01"
+                >
+
+            </div>
+
+
+            <div class="summary-field">
+
+                <label>
+                    GST
+                </label>
+
+                <input
+                    type="number"
+                    id="gstInput"
+                    step="0.01"
+                >
+
+            </div>
+
+
+            <div class="summary-field">
+
+                <label>
+                    Tax
+                </label>
+
+                <input
+                    type="number"
+                    id="taxInput"
+                    step="0.01"
+                >
+
+            </div>
+
+
+            <div class="summary-field">
+
+                <label>
+                    Discount
+                </label>
+
+                <input
+                    type="number"
+                    id="discountInput"
+                    step="0.01"
+                >
+
+            </div>
+
+
+            <div class="summary-field">
+
+                <label>
+                    Service Charge
+                </label>
+
+                <input
+                    type="number"
+                    id="serviceChargeInput"
+                    step="0.01"
+                >
+
+            </div>
+
+
+            <div class="summary-field grand-total-field">
+
+                <label>
+                    Grand Total
+                </label>
+
+                <input
+                    type="number"
+                    id="grandTotalInput"
+                    step="0.01"
+                >
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- ======================================== -->
+    <!-- ACTIONS -->
+    <!-- ======================================== -->
+
+    <div
+        class="bill-actions"
+    >
+
+        <button
+            id="recalculateBtn"
+            class="secondary-btn"
+            type="button"
+        >
+
+            🔄 Recalculate
+
+        </button>
+
+
+        <button
+            id="saveBillBtnBottom"
+            class="primary-btn"
+            type="button"
+        >
+
+            💾 Save Corrected Bill
+
+        </button>
+
+    </div>
+
+</section>
+
+
+    <!-- ===================================================== -->
+<!-- SPLIT BILL SECTION -->
+<!-- ===================================================== -->
+
+<div
+    id="splitSection"
+    class="mt-5 d-none"
+>
+
+    <div
+        class="text-center mb-4"
+    >
+
+        <h2
+            class="fw-bold"
+        >
+
+            <i
+                class="bi bi-people"
+            ></i>
+
+            Split Your Bill
+
+        </h2>
+
+
+        <p
+            class="text-muted"
+        >
+
+            Add members and assign items
+
+        </p>
+
+    </div>
+
+
+    <div
+        class="row"
+    >
+
+
+        <!-- ============================================= -->
+        <!-- MEMBERS -->
+        <!-- ============================================= -->
+
+        <div
+            class="col-lg-4"
+        >
+
+            <div
+                class="card shadow-sm border-0 mb-4"
+            >
+
+                <div
+                    class="card-body"
+                >
+
+                    <h4
+                        class="fw-bold"
+                    >
+
+                        Members
+
+                    </h4>
+
+
+                    <div
+                        class="input-group mt-3"
+                    >
+
+                        <input
+
+                            type="text"
+
+                            id="memberName"
+
+                            class="form-control"
+
+                            placeholder="Enter member name"
+
+                            aria-label="Member name"
+
+                        >
+
+
+                        <button
+
+                            id="addMemberBtn"
+
+                            class="btn btn-primary"
+
+                        >
+
+                            <i
+                                class="bi bi-plus"
+                            ></i>
+
+                        </button>
+
+
+                    </div>
+
+
+                    <div
+                        id="membersList"
+                        class="mt-4"
+                    >
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ============================================= -->
+        <!-- ITEM ASSIGNMENT -->
+        <!-- ============================================= -->
+
+        <div
+            class="col-lg-8"
+        >
+
+            <div
+                class="card shadow-sm border-0"
+            >
+
+                <div
+                    class="card-body"
+                >
+
+                    <h4
+                        class="fw-bold mb-4"
+                    >
+
+                        Assign Items
+
+                    </h4>
+
+
+                    <div
+                        id="itemAssignmentList"
+                    >
+
+                    </div>
+
+
+                    <button
+
+                        id="calculateSplitBtn"
+
+                        class="btn btn-success w-100 mt-4"
+
+                    >
+
+                        <i
+                            class="bi bi-calculator"
+                        ></i>
+
+                        Calculate Split
+
+                    </button>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <!-- =============================================== -->
+    <!-- SPLIT RESULT -->
+    <!-- =============================================== -->
+
+    <div
+        id="splitResult"
+        class="mt-5"
+    >
+
+    </div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- ========================================================= -->
+<!-- SCRIPT -->
+<!-- ========================================================= -->
+
+<script
+    src="/static/js/app.js"
+></script>
+
+
+</body>
+
+</html>
